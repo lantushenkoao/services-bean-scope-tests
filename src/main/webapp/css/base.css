@@ -1,0 +1,107 @@
+body {
+	font-family: "Trebuchet MS","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+	font-size: 11px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 4px;
+	color: #333;
+}
+
+h1{
+	font-size: 180%;
+	margin: 5px 0px 5px 0px;
+	padding: 0px;
+	font-family: "Arial Narrow", Arial, Verdana, Helvetica, sans-serif;
+	font-weight: normal;
+	color: #c00;
+	text-align: left;
+}
+
+.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+ 
+.msg {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+
+div.ajaxLoading{
+	background-image: url("../images/loadingBar.gif");
+	background-repeat:no-repeat;
+	background-position:center;
+	position: fixed;
+    width:300px;
+    top:5%;
+    left:40%;
+    text-align:center;
+    padding:5px;
+    color: #1A1;
+    font-weight: bold;
+    font-size: 11px;
+    visibility: hidden;
+}
+.header{
+	font-size: 180%;
+}
+.topBar{
+	padding: 2%;
+	background-color: #f0f4f4;
+	border-bottom: 2px solid #91b1b5;
+}
+.topBar ul{
+	display: inline;
+	margin: 0;
+	list-style-type: none;
+	text-align: left;
+}
+.topBar ul li { 
+	display: inline; 
+}
+.topBar ul li a{
+	text-decoration: none;
+	padding: .2em 1em;
+	color: #fff;
+	background-color: #036;
+}
+.topBar ul li a:hover{
+	color: #fff;
+	background-color: #369;
+}
+a.button {
+	-moz-box-shadow: 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow: 0px 1px 0px 0px #ffffff;
+	box-shadow: 0px 1px 0px 0px #ffffff;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f5f5f5), color-stop(1, #d1d1d1) );
+	background: -moz-linear-gradient(center top, #f5f5f5 5%, #d1d1d1 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#d1d1d1' );
+	background-color: #f5f5f5;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border: 1px solid #c9c9c9;
+	display: inline-block;
+	color: #000000 !important;
+	padding: 2px 10px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	text-decoration: none;
+	text-shadow: 1px 1px 0px #ffffff;
+	font-weight: bold;
+}
+form.logout{
+	display:inline; 
+	margin:0px; 
+	padding:0px;
+}

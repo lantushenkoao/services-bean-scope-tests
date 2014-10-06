@@ -1,0 +1,3 @@
+mysql.url=jdbc:mysql://localhost/services-scope
+mysql.user=root
+mysql.password=
