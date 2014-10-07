@@ -1,4 +1,4 @@
-package com.lantushenko.experimental.stub.webtests;
+package com.lantushenko.experimental.stub.webtests.tests;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lantushenko.experimental.stub.dbunit.utils.DataSets;
+import com.lantushenko.experimental.stub.webtests.BaseWebTest;
+import com.lantushenko.experimental.stub.webtests.WebTestAnnotation;
 import com.lantushenko.experimental.stub.webtests.pages.IndexPage;
 import com.lantushenko.experimental.stub.webtests.pages.LoginPage;
 import com.lantushenko.experimental.stub.webtests.steps.LoginSteps;
