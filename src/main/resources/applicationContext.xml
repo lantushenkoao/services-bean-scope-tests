@@ -14,11 +14,18 @@
 	<context:component-scan base-package="com.lantushenko.experimental.stub.repositories" />
 	<context:component-scan base-package="com.lantushenko.experimental.stub.services" />
 	
+	<bean class="java.net.URI" id="dbUrl">
+        <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
+    </bean>
+    
 	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource">
-		<property name="url" value="${mysql.url}"/>
-		<property name="username" value="${mysql.user}"/>
-		<property name="password" value="${mysql.password}"/>
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="#{ 'jdbc:mysql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
+		<!-- <property name="username" value="root"/>
+        <property name="password" value=""/>-->
+        <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
+        <property name="password" value="#{  @dbUrl.getUserInfo().split(':').length > 1 ? @dbUrl.getUserInfo().split(':')[1]:'' }"/>
+        
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		
 		
 		<property name="testWhileIdle" value="true"/>
@@ -32,6 +39,11 @@
 		<property name="maxIdle" value="10"/>
 		<property name="maxActive" value="-1"/>
 	</bean>	
+	
+	<bean class="com.lantushenko.experimental.stub.starter.DbStarterImpl">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="typeAliasesPackage" value="com.lantushenko.experimental.stub.dao.impl" />
