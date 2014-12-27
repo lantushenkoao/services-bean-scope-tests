@@ -28,7 +28,7 @@
 		INSERT INTO users(id, login, full_name, password) 
 		VALUES(#{id}, #{login}, #{fullName}, #{password})
 		<selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
-		   SELECT LAST_INSERT_ID() AS idf
+		   SELECT LASTVAL();
 		</selectKey>
 	</insert>
 	

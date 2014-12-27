@@ -6,7 +6,6 @@
 	  <param-name>contextConfigLocation</param-name>  
 	  <param-value>
 	  	classpath:applicationContext.xml,
-	  	classpath:settings.xml,
 	  	classpath:security.xml,
 	  </param-value>  
 	</context-param>
@@ -74,5 +73,15 @@
  	<servlet-mapping>
     	<servlet-name>default</servlet-name>
     	<url-pattern>*.js</url-pattern>
+  	</servlet-mapping>
+
+ 	<servlet-mapping>
+    	<servlet-name>default</servlet-name>
+    	<url-pattern>*.html</url-pattern>
+  	</servlet-mapping>
+  	
+ 	<servlet-mapping>
+    	<servlet-name>default</servlet-name>
+    	<url-pattern>*.mp3</url-pattern>
   	</servlet-mapping>
 </web-app>  

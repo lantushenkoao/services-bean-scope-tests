@@ -9,7 +9,7 @@
 	
 	<select id="getUserRoles" resultType="RoleImpl" parameterType="java.lang.Integer">
 		select r.* from roles r
-		inner join user_roles ur 
+		inner join user_roles ur on ur.role_id=r.id 
 		where ur.user_id=#{id}
 	</select>
 </mapper>

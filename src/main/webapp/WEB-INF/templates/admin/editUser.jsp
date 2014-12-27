@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
@@ -9,7 +11,7 @@
 <body>
 <jsp:include page="../includes/frame_header.jsp"/>
 <h1>Edit User</h1>
-<form method="post">
+<form method="post" action="${requestScope['javax.servlet.forward.request_uri']}">
 <input type="hidden" name="userId" value="${user.id}"/>
 <jsp:include page="manageUserFragment.jsp">
 	<jsp:param name="isLoginEditable" value="false"/>

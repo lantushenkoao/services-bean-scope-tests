@@ -76,7 +76,7 @@ public class ManageUsersController {
         if (StringUtils.hasText(password)) {
             userService.updateUserPassword(userId, password);
         }
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("redirect:/");
         mv.addObject("userId", userId);
         return mv;
     }

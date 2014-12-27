@@ -1,36 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schema-changes>
 	<update version="1">
-		CREATE TABLE `users` (
-		  `id` BIGINT NOT NULL AUTO_INCREMENT ,
-		  `login` VARCHAR(256) NOT NULL ,
-		  `full_name` VARCHAR(2048) NOT NULL DEFAULT '' ,
-		  `deleted_at` DATETIME NULL DEFAULT NULL ,
-		  `password` VARCHAR(256) NOT NULL ,
-		  PRIMARY KEY (`id`) ,
-		  UNIQUE INDEX `id_UNIQUE` (`id` ASC) );
+		CREATE TABLE users
+		(
+		   id bigserial NOT NULL, 
+		   login character varying(256), 
+		   full_name character varying(2048), 
+		   deleted_at date DEFAULT NULL, 
+		   password character varying(256) NOT NULL, 
+		   CONSTRAINT "PK_users" PRIMARY KEY (id)
+		) 
 	</update>
+	
 	<update version="2">
-		CREATE TABLE `roles` (
-		  `id` INT NOT NULL AUTO_INCREMENT,
-		  `name` VARCHAR(128) NOT NULL DEFAULT '',
-		  PRIMARY KEY (`id`));
+		CREATE TABLE roles
+		(
+		   id bigserial NOT NULL, 
+		   name character varying(128), 
+		   CONSTRAINT "PK_roles" PRIMARY KEY (id)
+		) 
 	</update>
+	
 	<update version="3">
-		CREATE TABLE `user_roles` (
-		  `user_id` BIGINT NOT NULL,
-		  `role_id` INT NOT NULL,
-		  INDEX `fk_role_role_idx` (`role_id` ASC),
-		  INDEX `fk_role_user_idx` (`user_id` ASC),
-		  CONSTRAINT `fk_role_user`
-		    FOREIGN KEY (`user_id`)
-		    REFERENCES `users` (`id`)
-		    ON DELETE NO ACTION
-		    ON UPDATE NO ACTION,
-		  CONSTRAINT `fk_role_role`
-		    FOREIGN KEY (`role_id`)
-		    REFERENCES `roles` (`id`)
-		    ON DELETE NO ACTION
-		    ON UPDATE NO ACTION);
+	CREATE TABLE user_roles
+	(
+	   user_id bigint NOT NULL, 
+	   role_id integer NOT NULL, 
+	   CONSTRAINT "FK_user_roles_user" FOREIGN KEY (user_id) 
+	   	REFERENCES users (id) ON UPDATE NO ACTION ON DELETE NO ACTION, 
+	   CONSTRAINT "FK_user_roles_role" FOREIGN KEY (role_id) 
+	   	REFERENCES roles (id) ON UPDATE NO ACTION ON DELETE NO ACTION
+	)
+	</update>
+	
+	<update version="4">
+	INSERT INTO users(
+            login, full_name, deleted_at, password)
+		VALUES ('first', 'First user', NULL, 
+		'bc3b070d2613f6ae732ad4df922b822586ea922088ec57fd351b52c201295b05f2b4c5c76a840e4b');
+	</update>
+	
+	<update version="5">
+	INSERT INTO roles(name) values('ROLE_MANAGE_USERS');
+	</update>
+	
+	<update version="6">
+	INSERT INTO user_roles(user_id, role_id) VALUES (1,1);
 	</update>
 </schema-changes>

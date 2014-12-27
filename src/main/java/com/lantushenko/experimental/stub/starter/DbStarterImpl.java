@@ -39,7 +39,6 @@ public class DbStarterImpl {
     @PostConstruct
     public void start() {
         try {
-            Thread.sleep(5000);
             TransactionStatus ts = transactionManager.getTransaction(new DefaultTransactionDefinition(
                     TransactionDefinition.PROPAGATION_REQUIRES_NEW));
             Connection connection = transactionManager.getDataSource().getConnection();
@@ -53,10 +52,9 @@ public class DbStarterImpl {
     }
 
     private void ensureVersionTableExists(Connection connection) throws SQLException {
-        connection.createStatement().execute("CREATE TABLE IF NOT EXISTS `version` ("
-                + " `id` INT NOT NULL AUTO_INCREMENT, "
-                + " `version` INT NOT NULL DEFAULT 0, "
-                + " PRIMARY KEY (`id`))");
+        connection.createStatement().execute("CREATE TABLE IF NOT EXISTS \"version\""
+                + "(id SERIAL NOT NULL, "
+                + "\"version\" INTEGER NOT NULL DEFAULT 0);");
         schemaVersionRepository.insertVersion();
     }
 
@@ -74,7 +72,7 @@ public class DbStarterImpl {
             Node node = updates.item(i);
             if (node instanceof Element) {
                 newVersion = Integer.parseInt(((Element) node).getAttribute(VERSION_ATT));
-                if (newVersion < currentVersion) {
+                if (newVersion <= currentVersion) {
                     continue;
                 }
                 String sql = ((Element) node).getTextContent();

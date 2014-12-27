@@ -7,9 +7,9 @@
 		<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 			<property name="properties">
 				<props>
-					<prop key="mysql.url">jdbc:mysql://localhost/stub-tests?characterEncoding=UTF-8&amp;useUnicode=true</prop>
-					<prop key="mysql.user">root</prop>
-					<prop key="mysql.password"></prop>
+					<prop key="db.url">jdbc:postgresql://localhost/stub-test?characterEncoding=UTF-8&amp;useUnicode=true</prop>
+					<prop key="db.user">postgres</prop>
+					<prop key="db.password">sfkdf</prop>
 				</props>
 			</property>
 		</bean>
